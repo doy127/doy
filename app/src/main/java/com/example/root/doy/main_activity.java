@@ -38,7 +38,7 @@ public class main_activity extends Activity{
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(main_activity.this, "hi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(main_activity.this, "hi!", Toast.LENGTH_SHORT).show();
             }
         });
 
