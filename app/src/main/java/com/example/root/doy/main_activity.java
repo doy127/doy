@@ -1,6 +1,9 @@
 package com.example.root.doy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,8 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 /**
@@ -19,6 +25,7 @@ import android.widget.Toast;
 public class main_activity extends Activity{
 
     String TAG = "main_activity";
+    private String[] data = {"aaa", "bbb", "ccc", "aaa", "bbb", "ccc", "aaa", "bbb", "ccc", "aaa", "bbb", "ccc"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +97,63 @@ public class main_activity extends Activity{
                 startActivity(intent);
             }
         });
+
+        Button button6 = (Button)findViewById(R.id.button_7);
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressBar bar = (ProgressBar)findViewById(R.id.progressbar);
+                if(bar.getVisibility() == View.GONE)
+                    bar.setVisibility(View.VISIBLE);
+                else
+                    bar.setVisibility(View.GONE);
+            }
+        });
+
+        Button button7 = (Button)findViewById(R.id.button_8);
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(main_activity.this);
+                alert.setTitle("aaa");
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.show();
+            }
+        });
+
+        Button button8 = (Button)findViewById(R.id.button_9);
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog progress = new ProgressDialog(main_activity.this);
+                progress.setCancelable(false);
+                progress.show();
+            }
+        });
+
+        Button second_page = (Button) findViewById(R.id.button_second_page);
+        second_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.second_page);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(main_activity.this,
+                        android.R.layout.simple_list_item_1, data);
+                ListView listview = (ListView)findViewById(R.id.list_view);
+                listview.setAdapter(adapter);
+            }
+        });
+
     }
 
     @Override
@@ -169,4 +233,6 @@ public class main_activity extends Activity{
         super.onDestroy();
         Log.d(TAG, "onDestroy");
     }
+
+
 }
