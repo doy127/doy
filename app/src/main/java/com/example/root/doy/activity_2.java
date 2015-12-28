@@ -29,6 +29,7 @@ public class activity_2 extends Activity{
     private Button send;
     private MsgAdapter adapter;
     private List<Msg> msgList = new ArrayList<Msg>();
+    int a = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,14 @@ public class activity_2 extends Activity{
             public void onClick(View v) {
                 String content = inputText.getText().toString();
                 if (!"".equals(content)) {
-                    Msg msg = new Msg(content, Msg.TYPE_SENT);
+                    int type;
+                    if(a % 2 == 0)
+                        type = Msg.TYPE_SENT;
+                    else
+                        type = Msg.TYPE_RECEIVED;
+
+                    a++;
+                    Msg msg = new Msg(content, type);
                     msgList.add(msg);
                     adapter.notifyDataSetChanged();
                     msgListView.setSelection(msgList.size());
@@ -74,12 +82,8 @@ public class activity_2 extends Activity{
     }
 
     private void initMsgs() {
-        Msg msg1 = new Msg("Hello guy.", Msg.TYPE_RECEIVED);
+        Msg msg1 = new Msg("Hi 帅哥", Msg.TYPE_RECEIVED);
         msgList.add(msg1);
-        Msg msg2 = new Msg("Hello. Who is that?", Msg.TYPE_SENT);
-        msgList.add(msg2);
-        Msg msg3 = new Msg("This is Tom. Nice talking to you. ", Msg.TYPE_RECEIVED);
-        msgList.add(msg3);
     }
 
 }
@@ -87,11 +91,8 @@ public class activity_2 extends Activity{
  class Msg {
 
     public static final int TYPE_RECEIVED = 0;
-
     public static final int TYPE_SENT = 1;
-
     private String content;
-
     private int type;
 
     public Msg(String content, int type) {

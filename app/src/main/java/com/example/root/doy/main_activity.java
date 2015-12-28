@@ -21,6 +21,9 @@ import android.widget.Toast;
 
 /**
  * Created by root on 12/23/15.
+ *
+ *
+ * git
  */
 public class main_activity extends Activity{
 
