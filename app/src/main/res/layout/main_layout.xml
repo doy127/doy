@@ -1,134 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/content_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="debug"
-        android:textSize="22dp"
-        android:textColor="#00ff00"
-        android:gravity="center"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toast"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
+    </FrameLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Intent activity_2"
-        android:id="@+id/button_3"
-        android:layout_gravity="center_horizontal" />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/editText"
-            android:hint="请输入网址" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="打开网页"
-            android:id="@+id/button_4" />
-
-    </LinearLayout>
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/editText_2"
-            android:hint="num"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="    拨号    "
-            android:id="@+id/button_5"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="对话框"
-        android:id="@+id/button_6"
-        android:layout_gravity="center_horizontal" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_view"
-        android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/progressbar"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="progressbar"
-        android:id="@+id/button_7"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="alertdialog"
-        android:id="@+id/button_8"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="progressdialog"
-        android:id="@+id/button_9"
-        android:layout_gravity="center_horizontal" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="blank"
-        android:id="@+id/button_10"
-        android:layout_gravity="center_horizontal" />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <com.example.root.doy.bottom_tag
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-        </com.example.root.doy.bottom_tag>
-    </RelativeLayout>
-
+    <include layout="@layout/change_page_tag" />
 
 
 </LinearLayout>

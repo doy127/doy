@@ -3,18 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.root.doy.bottom_tag
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/view">
-    </com.example.root.doy.bottom_tag>
-
     <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/view"
-        android:id="@+id/list_view" >
+        android:layout_height="match_parent" >
     </ListView>
 
 </RelativeLayout>

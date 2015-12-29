@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#002" >
+    android:orientation="horizontal" >
 
     <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="first_page"
         android:id="@+id/button_first_page"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="first"
         android:layout_weight="1" />
 
     <Button
+        android:id="@+id/button_second_page"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="second_page"
-        android:id="@+id/button_second_page"
+        android:text="second"
         android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/button_third_page"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="third"
+        android:layout_weight="1" />
+
 </LinearLayout>
