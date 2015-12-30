@@ -134,24 +134,33 @@ public class first_page extends Fragment {
             }
         });
 
+        Button button9 = (Button)view.findViewById(R.id.button_10);
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("android.intent.action.MYBROADCAST");
+                getActivity().sendBroadcast(intent);
+            }
+        });
+
         return view;
     }
-/*
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch(requestCode)
         {
             case 1:
-                if(resultCode == RESULT_OK)
+                if(resultCode == getActivity().RESULT_OK)
                 {
-                    Toast.makeText(main_activity.this, data.getStringExtra("from activity 2"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), data.getStringExtra("from activity 2"), Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
         }
-    }*/
+    }
 /*
     @Override
     protected void onSaveInstanceState(Bundle outState) {

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.root.doy">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -28,6 +29,12 @@
             android:name=".activity_dialog"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
+
+        <receiver android:name=".MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MYBROADCAST" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

@@ -3,6 +3,13 @@ package com.example.root.doy;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,18 +19,30 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 /**
  * Created by root on 12/23/15.
- *
- *
+ * <p/>
+ * <p/>
  * git
  */
-public class main_activity extends Activity implements View.OnClickListener{
+public class main_activity extends Activity implements View.OnClickListener {
 
     String TAG = "main_activity";
     first_page fm_first;
     second_page fm_second;
     third_page fm_third;
+
+    private IntentFilter intentFilter;
+    private NetworkBroadcastReceiver networkBroadcastReceiver;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,46 +58,59 @@ public class main_activity extends Activity implements View.OnClickListener{
         transaction.replace(R.id.content_fragment, fm_first);
         transaction.commit();
 
-        Button button_first_page = (Button)findViewById(R.id.button_first_page);
-        Button button_second_page = (Button)findViewById(R.id.button_second_page);
-        Button button_third_page = (Button)findViewById(R.id.button_third_page);
+        Button button_first_page = (Button) findViewById(R.id.button_first_page);
+        Button button_second_page = (Button) findViewById(R.id.button_second_page);
+        Button button_third_page = (Button) findViewById(R.id.button_third_page);
         button_first_page.setOnClickListener(this);
         button_second_page.setOnClickListener(this);
         button_third_page.setOnClickListener(this);
 
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        networkBroadcastReceiver = new NetworkBroadcastReceiver();
+        registerReceiver(networkBroadcastReceiver, intentFilter);
+
     }
 
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
 
-        switch (v.getId())
-        {
-            case R.id.button_first_page:
-            {
-                if(fm_first == null)
-                    fm_first =  new first_page();
+        switch (v.getId()) {
+            case R.id.button_first_page: {
+                if (fm_first == null)
+                    fm_first = new first_page();
                 transaction.replace(R.id.content_fragment, fm_first);
                 break;
             }
-            case R.id.button_second_page:
-            {
-                if(fm_second == null)
-                    fm_second =  new second_page();
+            case R.id.button_second_page: {
+                if (fm_second == null)
+                    fm_second = new second_page();
                 transaction.replace(R.id.content_fragment, fm_second);
                 break;
             }
-            case R.id.button_third_page:
-            {
-                if(fm_third == null)
-                    fm_third =  new third_page();
+            case R.id.button_third_page: {
+                if (fm_third == null)
+                    fm_third = new third_page();
                 transaction.replace(R.id.content_fragment, fm_third);
                 break;
             }
         }
 
         transaction.commit();
+    }
+
+    class NetworkBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if(networkInfo != null && networkInfo.isAvailable())
+                Toast.makeText(context, "network connected", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(context, "network disconnected", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -134,6 +166,7 @@ public class main_activity extends Activity implements View.OnClickListener{
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy");
+        unregisterReceiver(networkBroadcastReceiver);
     }
 
 }
