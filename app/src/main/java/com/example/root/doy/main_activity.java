@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,15 +18,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 /**
  * Created by root on 12/23/15.
- * <p/>
- * <p/>
- * git
  */
 public class main_activity extends Activity implements View.OnClickListener {
 
@@ -35,14 +27,11 @@ public class main_activity extends Activity implements View.OnClickListener {
     first_page fm_first;
     second_page fm_second;
     third_page fm_third;
+    fourth_page fm_fourth;
+    fifth_page fm_fifth;
 
     private IntentFilter intentFilter;
     private NetworkBroadcastReceiver networkBroadcastReceiver;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +47,17 @@ public class main_activity extends Activity implements View.OnClickListener {
         transaction.replace(R.id.content_fragment, fm_first);
         transaction.commit();
 
+        //sixth seventh eighth ninth tenth
         Button button_first_page = (Button) findViewById(R.id.button_first_page);
         Button button_second_page = (Button) findViewById(R.id.button_second_page);
         Button button_third_page = (Button) findViewById(R.id.button_third_page);
+        Button button_fourth_page = (Button) findViewById(R.id.button_fourth_page);
+        Button button_fifth_page = (Button) findViewById(R.id.button_fifth_page);
         button_first_page.setOnClickListener(this);
         button_second_page.setOnClickListener(this);
         button_third_page.setOnClickListener(this);
+        button_fourth_page.setOnClickListener(this);
+        button_fifth_page.setOnClickListener(this);
 
         intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -95,6 +89,18 @@ public class main_activity extends Activity implements View.OnClickListener {
                 transaction.replace(R.id.content_fragment, fm_third);
                 break;
             }
+            case R.id.button_fourth_page: {
+                if (fm_fourth == null)
+                    fm_fourth = new fourth_page();
+                transaction.replace(R.id.content_fragment, fm_fourth);
+                break;
+            }
+            case R.id.button_fifth_page: {
+                if (fm_fifth == null)
+                    fm_fifth = new fifth_page();
+                transaction.replace(R.id.content_fragment, fm_fifth);
+                break;
+            }
         }
 
         transaction.commit();
@@ -106,10 +112,10 @@ public class main_activity extends Activity implements View.OnClickListener {
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if(networkInfo != null && networkInfo.isAvailable())
+/*            if(networkInfo != null && networkInfo.isAvailable())
                 Toast.makeText(context, "network connected", Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(context, "network disconnected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "network disconnected", Toast.LENGTH_SHORT).show();*/
         }
     }
 

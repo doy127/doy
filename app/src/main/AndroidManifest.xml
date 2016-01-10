@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.root.doy">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -35,6 +38,9 @@
                 <action android:name="android.intent.action.MYBROADCAST" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".my_service">
+        </service>
 
     </application>
 
