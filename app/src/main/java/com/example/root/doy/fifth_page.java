@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,12 +83,17 @@ public class fifth_page extends Fragment{
                     }
                     case 4:
                     {
-
+                        Intent intent = new Intent(getActivity(), activity_web.class);
+                        startActivity(intent);
                         break;
                     }
                     case 5:
                     {
-
+                        LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+                        String provider = locationManager.NETWORK_PROVIDER;
+                        Location location = locationManager.getLastKnownLocation(provider);
+                        String pos = String.valueOf(location.getLatitude()) + " " + String.valueOf(location.getLongitude());
+                        Toast.makeText(getActivity(), pos, Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case 6:
@@ -127,8 +135,8 @@ public class fifth_page extends Fragment{
         string_list.add("stop service");
         string_list.add("bind service");
         string_list.add("unbind service");
-        string_list.add("null");
-        string_list.add("null");
+        string_list.add("web view");
+        string_list.add("get position");
         string_list.add("null");
         string_list.add("null");
         string_list.add("null");
