@@ -47,6 +47,9 @@
         <activity android:name=".activity_web" >
         </activity>
 
+        <activity android:name=".activity_location" >
+        </activity>
+
     </application>
 
 </manifest>
